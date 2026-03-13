@@ -1,0 +1,19 @@
+# EXO Requirements
+# Complete dependencies for all functionality
+
+requests>=2.31.0
+click>=8.1.7
+python-dotenv>=1.0.0
+markdown>=3.4.3
+beautifulsoup4>=4.12.2
+
+# File parsing dependencies
+PyPDF2>=3.0.0
+python-docx>=1.1.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Development and testing tools
+pytest>=7.4.0
