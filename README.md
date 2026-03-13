@@ -14,13 +14,13 @@ At its core, EXO exists to elevate AI Agent cognition through three fundamental 
 
 ## ✨ Key Features
 
-### � One-Click URL to Skill Conversion
+### One-Click URL to Skill Conversion
 Transform any internet resource into structured, AI-ready skills instantly:
 - **Web Pages**: Convert URLs to structured Markdown with one command
 - **Automatic Crawling**: Fetch and organize linked resources
 - **Skill-Ready Output**: Directly usable by AI Agents like Claude Code, Cursor, etc.
 
-### � Multi-Format Resource Parser
+### Multi-Format Resource Parser
 Parse and transform **any file format** into skill-ready resources:
 - **Documents**: PDF, DOC, DOCX
 - **Spreadsheets**: Excel (XLSX, XLS), CSV
@@ -130,7 +130,7 @@ CLOUDFLARE_API_KEY=your_cloudflare_api_key_here
 CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id_here
 
 # Model Configuration (Optional)
-EXO_MODEL=openai/gpt-4o-mini
+EXO_MODEL=openai/gpt-5.4
 ```
 
 ## 🚀 Quick Start
