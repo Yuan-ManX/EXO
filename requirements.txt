@@ -6,6 +6,7 @@ click>=8.1.7
 python-dotenv>=1.0.0
 markdown>=3.4.3
 beautifulsoup4>=4.12.2
+PyYAML>=6.0.0
 
 # File parsing dependencies
 PyPDF2>=3.0.0
