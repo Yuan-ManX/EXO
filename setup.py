@@ -25,6 +25,7 @@ setup(
         "openpyxl>=3.1.0",
         "Pillow>=10.0.0",
         "opencv-python>=4.8.0",
+        "PyYAML>=6.0.0",
     ],
     entry_points={
         "console_scripts": [
