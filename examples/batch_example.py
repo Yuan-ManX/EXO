@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 EXO batch processing example
 """
