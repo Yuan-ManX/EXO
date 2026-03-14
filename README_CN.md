@@ -1,3 +1,8 @@
+<div align="center">
+  
+<img src="./assets/EXO.png" alt="EXO Logo" width="75%"/>
+
+
 <p align="center">
   <h1 align="center">EXO</h1>
 </p>
@@ -22,9 +27,9 @@
   </a>
 </p>
 
-<div align="center">
 
 #### [English](./README.md) | [中文文档](./README_CN.md)
+
 
 </div>
 
