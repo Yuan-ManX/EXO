@@ -3,11 +3,11 @@
 <img src="./assets/Octopai.png" alt="Octopai Logo" width="75%" />
   
 <p align="center">
-  <h1 align="center">Octopai</h1>
+  <h1 align="center">Octopai 🐙</h1>
 </p>
 
 <p align="center">
-  <strong>The Skill Evolution Intelligence Engine for AI Agents. 🐙</strong>
+  <strong>The Skill Evolution Intelligence Engine for AI Agents.</strong>
 </p>
 
 <p align="center">
