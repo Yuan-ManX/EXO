@@ -1,7 +1,7 @@
 """
-EXO Web Backend API
+Octopai Web Backend API
 
-FastAPI backend for EXO Web Frontend, providing REST API endpoints
+FastAPI backend for Octopai Web Frontend, providing REST API endpoints
 for skill creation, evolution, and management.
 """
 
@@ -17,9 +17,9 @@ from pydantic import BaseModel, Field
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from exo import EXO
-from exo.api_integration.api import EXOIntegrationAPI
-from exo.api_integration.schemas import (
+from octopai import Octopai
+from octopai.api_integration.api import OctopaiIntegrationAPI
+from octopai.api_integration.schemas import (
     CreateSkillFromURLRequest,
     CreateSkillFromFilesRequest,
     CreateSkillFromPromptRequest,
@@ -28,8 +28,8 @@ from exo.api_integration.schemas import (
 
 
 app = FastAPI(
-    title="EXO Web API",
-    description="EXO - Everything Can Be a Skill • Skills Evolve Through Continuous Learning",
+    title="Octopai Web API",
+    description="Octopai - Everything Can Be a Skill • Skills Evolve Through Continuous Learning",
     version="0.1.0"
 )
 
@@ -47,7 +47,7 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 SKILLS_DIR = Path("./skills")
 SKILLS_DIR.mkdir(exist_ok=True)
 
-exo_api = EXOIntegrationAPI(
+octopai_api = OctopaiIntegrationAPI(
     skill_output_dir=str(SKILLS_DIR),
     skill_hub_dir="./SkillHub",
     experience_dir="./experiences"
@@ -76,7 +76,7 @@ class TaskStatusResponse(BaseModel):
 @app.get("/")
 async def root():
     return {
-        "message": "EXO Web API",
+        "message": "Octopai Web API",
         "version": "1.0.0",
         "philosophy": [
             "Everything Can Be a Skill",
@@ -98,17 +98,17 @@ async def create_skill_from_url(form: CreateSkillFromURLForm):
             description=form.description,
             tags=tags,
             category=form.category,
-            author="EXO Web",
+            author="Octopai Web",
             skill_type="general"
         )
         
-        task_id = exo_api.create_skill_from_url_async(request)
+        task_id = octopai_api.create_skill_from_url_async(request)
         
         return TaskStatusResponse(
             task_id=task_id,
             status="pending",
             task_type="create_from_url",
-            created_at=exo_api.tasks[task_id].created_at
+            created_at=octopai_api.tasks[task_id].created_at
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -140,13 +140,13 @@ async def create_skill_from_files(
             description=description,
             tags=tags_list,
             category=category,
-            author="EXO Web",
+            author="Octopai Web",
             skill_type="general"
         )
         
-        task_id = exo_api.create_skill_from_files_async(request)
+        task_id = octopai_api.create_skill_from_files_async(request)
         
-        task = exo_api.get_task_status(task_id)
+        task = octopai_api.get_task_status(task_id)
         
         return {
             "task_id": task_id,
@@ -176,14 +176,14 @@ async def create_skill_from_prompt(
             description=description,
             tags=tags_list,
             category=category,
-            author="EXO Web",
+            author="Octopai Web",
             skill_type="general",
             resources=None
         )
         
-        task_id = exo_api.create_skill_from_prompt_async(request)
+        task_id = octopai_api.create_skill_from_prompt_async(request)
         
-        task = exo_api.get_task_status(task_id)
+        task = octopai_api.get_task_status(task_id)
         
         return {
             "task_id": task_id,
@@ -198,7 +198,7 @@ async def create_skill_from_prompt(
 @app.get("/api/tasks/{task_id}", response_model=TaskStatusResponse)
 async def get_task_status(task_id: str):
     """Get status of a task"""
-    task = exo_api.get_task_status(task_id)
+    task = octopai_api.get_task_status(task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     
@@ -217,7 +217,7 @@ async def get_task_status(task_id: str):
 async def list_skills(category: Optional[str] = None, limit: int = 100, offset: int = 0):
     """List all skills"""
     try:
-        response = exo_api.list_skills(category=category, limit=limit, offset=offset)
+        response = octopai_api.list_skills(category=category, limit=limit, offset=offset)
         return {
             "skills": [s.dict() for s in response.skills],
             "total": response.total,
@@ -232,7 +232,7 @@ async def list_skills(category: Optional[str] = None, limit: int = 100, offset: 
 async def get_skill(skill_id: str):
     """Get a specific skill"""
     try:
-        skill_info = exo_api.get_skill_info(skill_id)
+        skill_info = octopai_api.get_skill_info(skill_id)
         if not skill_info:
             raise HTTPException(status_code=404, detail="Skill not found")
         return skill_info.dict()
@@ -251,9 +251,9 @@ async def evolve_skill(skill_id: str, feedback_summary: str = Form(...)):
             raise HTTPException(status_code=404, detail="Skill directory not found")
         
         request = OptimizeSkillRequest(skill_dir=str(skill_dir))
-        task_id = exo_api.optimize_skill_async(request)
+        task_id = octopai_api.optimize_skill_async(request)
         
-        task = exo_api.get_task_status(task_id)
+        task = octopai_api.get_task_status(task_id)
         
         return {
             "task_id": task_id,
@@ -271,7 +271,7 @@ async def evolve_skill(skill_id: str, feedback_summary: str = Form(...)):
 async def get_insights(skill_id: Optional[str] = None):
     """Get experience insights"""
     try:
-        return exo_api.get_insights(skill_id)
+        return octopai_api.get_insights(skill_id)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -280,7 +280,7 @@ async def get_insights(skill_id: Optional[str] = None):
 async def get_stats():
     """Get SkillHub statistics"""
     try:
-        return exo_api.exo.get_skill_hub_stats()
+        return octopai_api.octopai.get_skill_hub_stats()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
