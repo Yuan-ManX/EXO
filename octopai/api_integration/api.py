@@ -1,8 +1,8 @@
 """
-EXO Integration API - High-Level External Integration
+Octopai Integration API - High-Level External Integration
 
 This module provides a standardized, high-level API for integrating
-EXO's proprietary skill development platform with external applications.
+Octopai's proprietary skill development platform with external applications.
 Features async task management and status tracking.
 """
 
@@ -14,10 +14,10 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, Future
 from enum import Enum
 
-from exo import EXO
-from exo.core.pipeline import PipelineStage, PipelineResult
-from exo.core.skill_factory import SkillType
-from exo.api_integration.schemas import (
+from octopai import Octopai
+from octopai.core.pipeline import PipelineStage, PipelineResult
+from octopai.core.skill_factory import SkillType
+from octopai.api_integration.schemas import (
     CreateSkillFromURLRequest,
     CreateSkillFromFilesRequest,
     CreateSkillFromPromptRequest,
@@ -64,9 +64,9 @@ class AsyncTask:
         }
 
 
-class EXOIntegrationAPI:
+class OctopaiIntegrationAPI:
     """
-    EXO Integration API - Standardized Interface for External Applications
+    Octopai Integration API - Standardized Interface for External Applications
     
     Provides async task management, status tracking, and
     standardized data formats for external application integration.
@@ -80,7 +80,7 @@ class EXOIntegrationAPI:
         max_workers: int = 4
     ):
         """
-        Initialize EXO Web API
+        Initialize Octopai Web API
         
         Args:
             skill_output_dir: Directory for skill output
@@ -88,7 +88,7 @@ class EXOIntegrationAPI:
             experience_dir: Directory for experience tracking
             max_workers: Maximum number of concurrent tasks
         """
-        self.exo = EXO(
+        self.octopai = Octopai(
             skill_output_dir=skill_output_dir,
             skill_hub_dir=skill_hub_dir,
             experience_dir=experience_dir
@@ -107,10 +107,10 @@ class EXOIntegrationAPI:
             """Callback for pipeline stage completion"""
             pass
         
-        self.exo.pipeline.register_callback(PipelineStage.CREATION, on_stage_complete)
-        self.exo.pipeline.register_callback(PipelineStage.OPTIMIZATION, on_stage_complete)
-        self.exo.pipeline.register_callback(PipelineStage.PACKAGING, on_stage_complete)
-        self.exo.pipeline.register_callback(PipelineStage.VALIDATION, on_stage_complete)
+        self.octopai.pipeline.register_callback(PipelineStage.CREATION, on_stage_complete)
+        self.octopai.pipeline.register_callback(PipelineStage.OPTIMIZATION, on_stage_complete)
+        self.octopai.pipeline.register_callback(PipelineStage.PACKAGING, on_stage_complete)
+        self.octopai.pipeline.register_callback(PipelineStage.VALIDATION, on_stage_complete)
     
     def create_skill_from_url_async(
         self,
@@ -142,7 +142,7 @@ class EXOIntegrationAPI:
                     self.tasks[task_id].status = TaskStatus.RUNNING
                     self.tasks[task_id].started_at = datetime.now().isoformat()
                 
-                result = self.exo.create_from_url(
+                result = self.octopai.create_from_url(
                     url=request.url,
                     name=request.name,
                     description=request.description,
@@ -200,7 +200,7 @@ class EXOIntegrationAPI:
                     self.tasks[task_id].status = TaskStatus.RUNNING
                     self.tasks[task_id].started_at = datetime.now().isoformat()
                 
-                result = self.exo.create_from_files(
+                result = self.octopai.create_from_files(
                     file_paths=request.files,
                     name=request.name,
                     description=request.description,
@@ -258,7 +258,7 @@ class EXOIntegrationAPI:
                     self.tasks[task_id].status = TaskStatus.RUNNING
                     self.tasks[task_id].started_at = datetime.now().isoformat()
                 
-                result = self.exo.create_from_prompt(
+                result = self.octopai.create_from_prompt(
                     prompt=request.prompt,
                     name=request.name,
                     description=request.description,
@@ -317,7 +317,7 @@ class EXOIntegrationAPI:
                     self.tasks[task_id].status = TaskStatus.RUNNING
                     self.tasks[task_id].started_at = datetime.now().isoformat()
                 
-                result = self.exo.optimize_skill(
+                result = self.octopai.optimize_skill(
                     skill_dir=request.skill_dir
                 )
                 
@@ -423,11 +423,11 @@ class EXOIntegrationAPI:
         Returns:
             SkillInfoResponse or None
         """
-        skill = self.exo.get_skill_from_hub(skill_id)
+        skill = self.octopai.get_skill_from_hub(skill_id)
         if not skill:
             return None
         
-        experience = self.exo.get_skill_experience(skill_id)
+        experience = self.octopai.get_skill_experience(skill_id)
         
         response = SkillInfoResponse(
             skill_id=skill_id,
@@ -463,7 +463,7 @@ class EXOIntegrationAPI:
         Returns:
             SkillListResponse
         """
-        skills = self.exo.list_skills_in_hub(category, tags, limit + offset)
+        skills = self.octopai.list_skills_in_hub(category, tags, limit + offset)
         
         skill_infos = []
         for skill in skills[offset:offset + limit]:
@@ -488,7 +488,7 @@ class EXOIntegrationAPI:
         Returns:
             SkillListResponse
         """
-        skills = self.exo.search_skills_in_hub(
+        skills = self.octopai.search_skills_in_hub(
             query=query.query,
             tags=query.tags,
             category=query.category,
@@ -518,7 +518,7 @@ class EXOIntegrationAPI:
         Returns:
             Dictionary of insights
         """
-        return self.exo.get_experience_insights(skill_id)
+        return self.octopai.get_experience_insights(skill_id)
     
     def cancel_task(self, task_id: str) -> bool:
         """
