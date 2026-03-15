@@ -11,7 +11,7 @@ function Docs() {
         content: `
 # Getting Started
 
-This guide will help you get up and running with EXO in minutes.
+This guide will help you get up and running with Octopai in minutes.
 
 ## Prerequisites
 
@@ -23,8 +23,8 @@ This guide will help you get up and running with EXO in minutes.
 ### 1. Clone the Repository
 
 \`\`\`bash
-git clone https://github.com/Yuan-ManX/EXO.git
-cd EXO
+git clone https://github.com/Yuan-ManX/octopai.git
+cd octopai
 \`\`\`
 
 ### 2. Install Dependencies
@@ -52,17 +52,17 @@ OPENROUTER_API_KEY=your_openrouter_api_key
 
 ### Using the Python API
 
-The simplest way to use EXO is through the Python API:
+The simplest way to use Octopai is through the Python API:
 
 \`\`\`python
-import exo
+import octopai
 
 # Convert a URL to a skill
-skill_dir = exo.convert("https://example.com")
+skill_dir = octopai.convert("https://example.com")
 print(f"Skill created at: {skill_dir}")
 
 # Full processing pipeline
-final_skill_dir = exo.process("https://example.com", evolve=True)
+final_skill_dir = octopai.process("https://example.com", evolve=True)
 print(f"Final skill at: {final_skill_dir}")
 \`\`\`
         `
@@ -74,25 +74,25 @@ print(f"Final skill at: {final_skill_dir}")
 
 ## Core Functions
 
-### exo.convert()
+### octopai.convert()
 Convert a URL or file to a skill.
 
 \`\`\`python
-exo.convert(url_or_path, name=None, output_dir=None)
+octopai.convert(url_or_path, name=None, output_dir=None)
 \`\`\`
 
-### exo.process()
+### octopai.process()
 Full processing pipeline with optional evolution.
 
 \`\`\`python
-exo.process(url_or_path, evolve=False, iterations=3)
+octopai.process(url_or_path, evolve=False, iterations=3)
 \`\`\`
 
-### exo.evolve()
+### octopai.evolve()
 Evolve an existing skill.
 
 \`\`\`python
-exo.evolve(skill_path, iterations=5, feedback=None)
+octopai.evolve(skill_path, iterations=5, feedback=None)
 \`\`\`
         `
       },
@@ -104,20 +104,20 @@ exo.evolve(skill_path, iterations=5, feedback=None)
 ## Basic URL to Skill
 
 \`\`\`python
-import exo
+import octopai
 
 # Convert a documentation page
-skill = exo.convert("https://example.com/docs")
+skill = octopai.convert("https://example.com/docs")
 print(f"Created skill: {skill}")
 \`\`\`
 
 ## With Evolution
 
 \`\`\`python
-import exo
+import octopai
 
 # Process and evolve
-final_skill = exo.process(
+final_skill = octopai.process(
     "https://example.com/guide",
     evolve=True,
     iterations=5
@@ -130,13 +130,13 @@ final_skill = exo.process(
         content: `
 # FAQ
 
-## What is EXO?
+## What is Octopai?
 
-EXO is an AI Agent Skills Exploration, Extension, and Evolution Framework.
+Octopai is an AI Agent Skills Exploration, Extension, and Evolution Framework.
 
 ## How does skill evolution work?
 
-EXO uses a three-stage evolution pipeline: Executor → Reflector → Optimizer.
+Octopai uses a three-stage evolution pipeline: Executor → Reflector → Optimizer.
 
 ## What file formats are supported?
 
@@ -150,7 +150,7 @@ PDF, DOC, DOCX, XLSX, CSV, images, videos, and more!
         content: `
 # 快速开始
 
-本指南将帮助您在几分钟内启动并运行EXO。
+本指南将帮助您在几分钟内启动并运行Octopai。
 
 ## 前置要求
 
@@ -162,8 +162,8 @@ PDF, DOC, DOCX, XLSX, CSV, images, videos, and more!
 ### 1. 克隆仓库
 
 \`\`\`bash
-git clone https://github.com/Yuan-ManX/EXO.git
-cd EXO
+git clone https://github.com/Yuan-ManX/octopai.git
+cd octopai
 \`\`\`
 
 ### 2. 安装依赖
@@ -191,17 +191,17 @@ OPENROUTER_API_KEY=your_openrouter_api_key
 
 ### 使用Python API
 
-使用EXO最简单的方式是通过Python API：
+使用Octopai最简单的方式是通过Python API：
 
 \`\`\`python
-import exo
+import octopai
 
 # 将URL转换为skill
-skill_dir = exo.convert("https://example.com")
+skill_dir = octopai.convert("https://example.com")
 print(f"Skill创建于: {skill_dir}")
 
 # 完整处理流程
-final_skill_dir = exo.process("https://example.com", evolve=True)
+final_skill_dir = octopai.process("https://example.com", evolve=True)
 print(f"最终Skill位于: {final_skill_dir}")
 \`\`\`
         `
@@ -213,25 +213,25 @@ print(f"最终Skill位于: {final_skill_dir}")
 
 ## 核心函数
 
-### exo.convert()
+### octopai.convert()
 将URL或文件转换为skill。
 
 \`\`\`python
-exo.convert(url_or_path, name=None, output_dir=None)
+octopai.convert(url_or_path, name=None, output_dir=None)
 \`\`\`
 
-### exo.process()
+### octopai.process()
 带可选进化的完整处理流程。
 
 \`\`\`python
-exo.process(url_or_path, evolve=False, iterations=3)
+octopai.process(url_or_path, evolve=False, iterations=3)
 \`\`\`
 
-### exo.evolve()
+### octopai.evolve()
 进化现有skill。
 
 \`\`\`python
-exo.evolve(skill_path, iterations=5, feedback=None)
+octopai.evolve(skill_path, iterations=5, feedback=None)
 \`\`\`
         `
       },
@@ -243,20 +243,20 @@ exo.evolve(skill_path, iterations=5, feedback=None)
 ## 基本URL转Skill
 
 \`\`\`python
-import exo
+import octopai
 
 # 转换文档页面
-skill = exo.convert("https://example.com/docs")
+skill = octopai.convert("https://example.com/docs")
 print(f"已创建skill: {skill}")
 \`\`\`
 
 ## 带进化
 
 \`\`\`python
-import exo
+import octopai
 
 # 处理和进化
-final_skill = exo.process(
+final_skill = octopai.process(
     "https://example.com/guide",
     evolve=True,
     iterations=5
@@ -269,13 +269,13 @@ final_skill = exo.process(
         content: `
 # 常见问题
 
-## 什么是EXO？
+## 什么是Octopai？
 
-EXO是一个AI Agent技能探索、扩展和进化框架。
+Octopai是一个AI Agent技能探索、扩展和进化框架。
 
 ## Skill进化如何工作？
 
-EXO使用三阶段进化流程：执行器 → 反思器 → 优化器。
+Octopai使用三阶段进化流程：执行器 → 反思器 → 优化器。
 
 ## 支持哪些文件格式？
 
@@ -307,7 +307,7 @@ PDF、DOC、DOCX、XLSX、CSV、图片、视频等！
           <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
             Documentation
           </h1>
-          <p className="text-gray-600">Complete EXO usage guide and API reference</p>
+          <p className="text-gray-600">Complete Octopai usage guide and API reference</p>
         </div>
         <button
           onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}
