@@ -4,13 +4,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="exo",
+    name="octopai",
     version="0.1.0",
-    description="EXO - Explore, Extend, Evolve AI Agent Cognition.",
+    description="Octopai - Explore, Extend, Evolve AI Agent Cognition.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Yuan Man",
-    url="https://github.com/Yuan-ManX/EXO",
+    url="https://github.com/Yuan-ManX/octopai",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -29,7 +29,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "exo=exo.cli.main:cli"
+            "octopai=octopai.cli.main:cli"
         ]
     },
     classifiers=[
